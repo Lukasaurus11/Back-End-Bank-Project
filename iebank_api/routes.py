@@ -10,15 +10,26 @@ def hello_world():
 
 @app.route("/skull", methods=["GET"])
 def skull():
-    return "Hi! This is the BACKEND SKULL! 💀"
+    text = "Hi! This is the BACKEND SKULL! 💀 "
+
+    text = text + "<br/>Database URL:" + db.engine.url.database
+    if db.engine.url.host:
+        text = text + "<br/>Database host:" + db.engine.url.host
+    if db.engine.url.port:
+        text = text + "<br/>Database port:" + db.engine.url.port
+    if db.engine.url.username:
+        text = text + "<br/>Database user:" + db.engine.url.username
+    if db.engine.url.password:
+        text = text + "<br/>Database password:" + db.engine.url.password
+    return text
 
 
 @app.route("/accounts", methods=["POST"])
 def create_account():
     name = request.json["name"]
-    currency = request.json["currency"]
     country = request.json["country"]
-    account = Account(name, currency, country)
+    currency = request.json["currency"]
+    account = Account(name, country, currency)
     db.session.add(account)
     db.session.commit()
     return format_account(account)
@@ -56,10 +67,10 @@ def format_account(account):
     return {
         "id": account.id,
         "name": account.name,
+        "country": account.country,
         "account_number": account.account_number,
         "balance": account.balance,
         "currency": account.currency,
         "status": account.status,
         "created_at": account.created_at,
-        "country": account.country,
     }
