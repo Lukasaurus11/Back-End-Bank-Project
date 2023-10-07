@@ -30,6 +30,11 @@ def test_create_account(testing_client):
     THEN check the response is valid
     """
     response = testing_client.post(
-        "/accounts", json={"name": "John Doe", "currency": "€", "country": "Spain"}
+        "/accounts",
+        json={
+            "name": "John Doe",
+            "country": "Spain",
+            "currency": "€",
+        },
     )
     assert response.status_code == 200
