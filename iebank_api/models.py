@@ -16,6 +16,10 @@ class Account(db.Model):
     def __repr__(self):
         return "<Event %r>" % self.account_number
 
+    def __deactivate__(self):
+        self.status = "Inactive"
+        return self.status
+
     def __init__(self, name, country, currency):
         self.name = name
         self.country = country

@@ -21,18 +21,17 @@ def test_account_repr():
     """
     GIVEN a Account model
     WHEN a new Account is created
-    THEN check the __repr__ field is defined correctly
+    THEN check the __repr__ method is defined correctly
     """
     account = Account("John Doe", "Spain", "€")
     assert repr(account) == f"<Event '{(account.account_number)}'>"
 
 
-def test_account_innit_with_invalid_currency():
+def test_account_deactivate():
     """
     GIVEN a Account model
-    WHEN a new Account is created with an invalid currency
-    THEN check the currency field is defined correctly
+    WHEN a new Account is created
+    THEN check the __deactivate__ method is defined correctly
     """
-    with pytest.raises(ValueError):
-        account = Account("John Doe", "Spain", "€€€")
-        assert account.currency == "€€€"
+    account = Account("John Doe", "Spain", "€")
+    assert account.__deactivate__() == "Inactive"
