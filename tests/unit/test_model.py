@@ -2,7 +2,7 @@ from iebank_api.models import Account
 import pytest
 
 
-def test_create_account():
+def test_account_innit():
     """
     GIVEN a Account model
     WHEN a new Account is created
@@ -25,3 +25,14 @@ def test_account_repr():
     """
     account = Account("John Doe", "Spain", "€")
     assert repr(account) == f"<Event '{(account.account_number)}'>"
+
+
+def test_account_model():
+    """
+    GIVEN an Account model
+    WHEN a new Account is created
+    THEN check the created_at field is not empty
+    """
+
+    account = Account("John Doe", "Spain", "€")
+    assert account.created_at is not None
