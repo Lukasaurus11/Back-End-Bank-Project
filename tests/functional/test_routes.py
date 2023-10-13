@@ -51,17 +51,17 @@ def test_delete_account(testing_client):
     assert response.status_code == 200
 
 
-# def test_get_account_by_id(testing_client):
-#     """
-#     GIVEN a Flask application
-#     WHEN the '/accounts' page is requested (GET)
-#     THEN check the response is valid
-#     """
+def test_get_account_by_id(testing_client):
+    """
+    GIVEN a Flask application
+    WHEN the '/accounts' page is requested (GET)
+    THEN check the response is valid
+    """
 
-#     # Create an account first
-#     response = testing_client.post(
-#         "/accounts", json={"name": "John Doe", "country": "Spain", "currency": "€"}
-#     )
+    # Create an account first
+    response = testing_client.post(
+        "/accounts", json={"name": "John Doe", "country": "Spain", "currency": "€"}
+    )
 
-#     response = testing_client.get("/accounts/1")
-#     assert response.status_code == 200
+    response = testing_client.get("/accounts/1")
+    assert response.status_code == 200
