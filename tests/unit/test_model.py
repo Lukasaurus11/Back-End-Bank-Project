@@ -27,12 +27,12 @@ def test_account_repr():
     assert repr(account) == f"<Event '{(account.account_number)}'>"
 
 
-def test_account_model():
+def test_account_innit_with_invalid_currency():
     """
-    GIVEN an Account model
-    WHEN a new Account is created
-    THEN check the created_at field is not empty
+    GIVEN a Account model
+    WHEN a new Account is created with an invalid currency
+    THEN check the currency field is defined correctly
     """
-
-    account = Account("John Doe", "Spain", "€")
-    assert account.created_at is not None
+    with pytest.raises(ValueError):
+        account = Account("John Doe", "Spain", "€€€")
+        assert account.currency == "€€€"
