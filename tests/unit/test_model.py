@@ -24,4 +24,4 @@ def test_account_repr():
     THEN check the __repr__ field is defined correctly
     """
     account = Account("John Doe", "Spain", "€")
-    assert repr(account) == f"<Event {int(account.account_number)}>"
+    assert repr(account) == f"<Event '{(account.account_number)}'>"
