@@ -24,4 +24,4 @@ def test_account_repr():
     THEN check the __repr__ field is defined correctly
     """
     account = Account("John Doe", "Spain", "€")
-    assert repr(account) == "<Account John Doe>"
+    assert repr(account) == "<Account {account.account_number}>"
